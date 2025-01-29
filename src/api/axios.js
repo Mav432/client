@@ -3,7 +3,7 @@ import axios from "axios";
 // Crear una instancia de axios con configuración personalizada
 const instance = axios.create({
     //baseURL: config.appUrl,
-    baseURL: 'http://localhost:3000/api', // Establece la URL base para todas las solicitudes
+    baseURL: 'https://api-client-three.vercel.app/api', // Establece la URL base para todas las solicitudes
     withCredentials: true // Permite el envío de cookies con las solicitudes
 });
 
