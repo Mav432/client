@@ -56,7 +56,7 @@ function LoginPage() {
           <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Iniciar Sesión</button>
         </form>
         <div className="mt-4 text-center">
-          <Link to="/forgot-password" className="text-blue-500 hover:underline">¿Olvidaste tu contraseña?</Link>
+          <Link to="/password-recovery" className="text-blue-500 hover:underline">¿Olvidaste tu contraseña?</Link>
         </div>
       </div>
     </div>
