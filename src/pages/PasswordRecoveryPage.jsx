@@ -26,7 +26,7 @@ const PasswordRecoveryPage = () => {
 
   const handleOptionClick = (option) => {
     if (option === 'email') {
-      navigate('/send-recovery-email', { state: { userId, email: userDetails.email, name: userDetails.name } });
+      navigate(`/send-recovery-email/${userId}`, { state: { userId, email: userDetails.email, name: userDetails.name } });
     } else if (option === 'security-question') {
       navigate(`/verify-answer/${userId}`);
     }

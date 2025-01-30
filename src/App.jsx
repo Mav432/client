@@ -34,7 +34,7 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path="/password-recovery" element={<PasswordRecoveryPage />} />
-        <Route path="/send-recovery-email" element={<SendRecoveryEmailPage />} />
+        <Route path="/send-recovery-email/:userId" element={<SendRecoveryEmailPage />} />
         <Route path="/verify-answer/:userId" element={<VerifyAnswerPage />} />
         <Route path="/reset-password/:userId" element={<ResetPasswordPage />} />
       </Routes>
