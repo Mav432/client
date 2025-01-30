@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Register from "./pages/RegisterPage";
 import Login from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import HomePage from "./pages/HomePage";
 //import { AuthProvider } from "./context/AuthContext";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -19,7 +20,7 @@ function App() {
     <div>
       <Navbar /> {/* Agrega el componente Navbar aquí */}
       <Routes>
-        <Route path="/" element={<h1>Home page</h1>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={
