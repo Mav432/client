@@ -14,11 +14,13 @@ function RegisterPage() {
   const [questions, setQuestions] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState([]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('https://apiback-api.vercel.app/api/security-questions');
+        //const response = await axios.get('https://apiback-api.vercel.app/api/security-questions');
+        const response = await axios.get('http://localhost:3000/api/security-questions');
         setQuestions(response.data);
       } catch (error) {
         console.error('Error al obtener las preguntas de seguridad:', error);
@@ -27,18 +29,13 @@ function RegisterPage() {
     fetchQuestions();
   }, []);
 
-  const normalizeString = (str) => {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
-  };
-
   const registerUser = async (values) => {
-    values.securityAnswer = normalizeString(values.securityAnswer);
     try {
       await signUp(values);
       toast.success('Usuario registrado correctamente');
       setTimeout(() => {
         navigate('/login'); // Redirigir a la página de inicio de sesión
-      }, 1000);
+      }, 1500);
     } catch (error) {
       console.error('Error al registrar:', error.response ? error.response.data : error.message);
       if (error.response && error.response.data.errors) {
@@ -51,6 +48,27 @@ function RegisterPage() {
     }
   };
 
+  // validacion de contraseña
+  const validatePassword = (password) => {
+    const requirements = [
+      { regex: /[A-Z]/, message: 'una letra mayúscula' },
+      { regex: /[a-z]/, message: 'una letra minúscula' },
+      { regex: /[0-9]/, message: 'un número' },
+      { regex: /[^A-Za-z0-9]/, message: 'un carácter especial' },
+      { regex: /.{8,16}/, message: 'al menos 8 caracteres' }
+    ];
+
+    const unmetRequirements = requirements.filter(req => !req.regex.test(password));
+    setPasswordStrength(unmetRequirements);
+    return unmetRequirements.length === 0;
+  };
+
+  // manejo de cambio en de contraseña
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    validatePassword(password);
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <ToastContainer />
@@ -61,7 +79,13 @@ function RegisterPage() {
             <label className="block text-gray-300">Nombre de Usuario</label>
             <input
               type="text"
-              {...register("username", { required: "El nombre de usuario es obligatorio" })}
+              {...register("username", { 
+                required: "El nombre de usuario es obligatorio",
+                pattern: {
+                  value: /^[a-zA-Z]{4,}$/,
+                  message: "El nombre de usuario debe tener al menos 4 caracteres y solo letras"
+                }
+              })}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
               placeholder="Nombre de Usuario"
             />
@@ -71,7 +95,13 @@ function RegisterPage() {
             <label className="block text-gray-300">Correo Electrónico</label>
             <input
               type="email"
-              {...register("email", { required: "El correo electrónico es obligatorio" })}
+              {...register("email", { 
+                required: "El correo electrónico es obligatorio",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "El correo electrónico no es válido"
+                }
+               })}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
               placeholder="Correo Electrónico"
             />
@@ -80,12 +110,12 @@ function RegisterPage() {
           <div className="mb-4">
             <label className="block text-gray-300">Teléfono</label>
             <input
-              type="text"
+              type="number"
               {...register("phone", { 
                 required: "El teléfono es obligatorio", 
                 pattern: {
-                  value: /^[0-9]+$/,
-                  message: "El teléfono solo puede contener números"
+                  value: /^[0-9]{10}$/,
+                  message: "El teléfono debe tener 10 dígitos"
                 }
               })}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
@@ -100,13 +130,11 @@ function RegisterPage() {
                 type={showPassword ? "text" : "password"}
                 {...register("password", { 
                   required: "La contraseña es obligatoria",
-                  pattern: {
-                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[0-9a-zA-Z!@#$%^&*(),.?":{}|<>]{8,}$/,
-                    message: "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número"
-                  }
+                  validate: validatePassword
                 })}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
                 placeholder="Contraseña"
+                onChange={handlePasswordChange} // validar contrasena
               />
               <button
                 type="button"
@@ -117,6 +145,9 @@ function RegisterPage() {
               </button>
             </div>
             {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+            {passwordStrength.length > 0 && (
+              <p className="text-gray-400 text-sm mt-1">La contraseña debe contener: {passwordStrength.map(req => req.message).join(', ')}</p>
+            )}
           </div>
           <div className="mb-4 relative">
             <label className="block text-gray-300">Confirmar Contraseña</label>
@@ -162,7 +193,12 @@ function RegisterPage() {
               {...register("securityAnswer", { required: "La respuesta de seguridad es obligatoria" })}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
               placeholder="Respuesta de Seguridad"
-              onInput={(e) => e.target.value = normalizeString(e.target.value)}
+              onInput={(e) => {
+                e.target.value = e.target.value 
+                  .normalize('NFD')// normalizar el texto
+                  .replace(/[\u0300-\u036f]/g, '') // eliminar signois diacríticos
+                  .toUpperCase(); // convierte a mayusculas
+                }}
             />
             {errors.securityAnswer && <p className="text-red-500 text-sm mt-1">{errors.securityAnswer.message}</p>}
           </div>

@@ -1,30 +1,28 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { AuthContext } from "./AuthContext";
 import { registerRequest, loginRequest, logoutRequest, getProfileRequest } from "../api/auth";
 
-export const AuthContext = createContext();
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
-
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true); 
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        const token = localStorage.getItem('authToken');
+        if(token) {
         const res = await getProfileRequest();
         setUser(res.data);
         setIsAuthenticated(true);
+        }
       } catch (error) {
         console.log(error);
         setIsAuthenticated(false);
+      } finally {
+        setLoading(false); // Finaliza la carga
       }
     };
 
@@ -36,8 +34,11 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user);
       setUser(res.data);
       setIsAuthenticated(true);
+      return { success: true, data: res.data };
     } catch (error) {
-      setErrors(error.response ? error.response.data.errors : [error.message]);
+      const errorMessage = error.response ? error.response.data.errors : [error.message];
+      setErrors(errorMessage);
+      return { success: false, message: errorMessage };
     }
   };
 
@@ -46,8 +47,11 @@ export const AuthProvider = ({ children }) => {
       const res = await loginRequest(user);
       setUser(res.data);
       setIsAuthenticated(true);
+      return { success: true, data: res.data };
     } catch (error) {
-      setErrors(error.response ? error.response.data.errors : [error.message]);
+      const errorMessage = error.response ? error.response.data.errors : [error.message];
+      setErrors(errorMessage);
+      return { success: false, message: errorMessage };
     }
   };
 
@@ -69,6 +73,7 @@ export const AuthProvider = ({ children }) => {
         signOut,
         user,
         isAuthenticated,
+        loading, // Proporciona el estado de carga
         errors
       }}
     >
@@ -76,3 +81,9 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default AuthProvider;
