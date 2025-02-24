@@ -19,8 +19,8 @@ function RegisterPage() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        //const response = await axios.get('https://apiback-api.vercel.app/api/security-questions');
-        const response = await axios.get('http://localhost:3000/api/security-questions');
+        const response = await axios.get('https://apiback-api.vercel.app/api/security-questions');
+        //const response = await axios.get('http://localhost:3000/api/security-questions');
         setQuestions(response.data);
       } catch (error) {
         console.error('Error al obtener las preguntas de seguridad:', error);
