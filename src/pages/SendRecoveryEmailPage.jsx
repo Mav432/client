@@ -37,7 +37,7 @@ const SendRecoveryEmailPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <ToastContainer />
-      <div className="bg-gray-800 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">Enviar correo electrónico de recuperación</h2>
         <form onSubmit={handleSubmit(sendRecoveryEmail)}>
           <div className="mb-4">
@@ -45,7 +45,7 @@ const SendRecoveryEmailPage = () => {
             <input
               type="email"
               {...register("email", { required: "Email is required" })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
               readOnly // Hacer que el campo sea de solo lectura
             />
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
@@ -55,7 +55,7 @@ const SendRecoveryEmailPage = () => {
             <input
               type="text"
               {...register("name", { required: "Name is required" })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
               readOnly // Hacer que el campo sea de solo lectura
             />
             {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}

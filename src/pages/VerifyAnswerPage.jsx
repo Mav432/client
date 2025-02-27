@@ -37,7 +37,7 @@ const VerifyAnswerPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <ToastContainer />
-      <div className="bg-gray-800 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">{question}</h2>
         <form onSubmit={handleSubmit(verifyAnswer)}>
           <div className="mb-4">
@@ -45,7 +45,7 @@ const VerifyAnswerPage = () => {
             <input
               type="text"
               {...register("securityAnswer", { required: "La respuesta de seguridad es obligatoria" })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
               placeholder="Security Answer"
             />
             {errors.securityAnswer && <p className="text-red-500 text-sm mt-1">{errors.securityAnswer.message}</p>}

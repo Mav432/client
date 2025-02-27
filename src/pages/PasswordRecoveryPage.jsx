@@ -35,7 +35,7 @@ const PasswordRecoveryPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <ToastContainer />
-      <div className="bg-gray-800 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">Recuperación de contraseña</h2>
         {!options ? (
           <form onSubmit={handleSubmit(verifyUser)}>
@@ -44,7 +44,7 @@ const PasswordRecoveryPage = () => {
               <input
                 type="text"
                 {...register("usernameOrEmail", { required: "Se requiere nombre de usuario o correo electrónico" })}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
               />
               {errors.usernameOrEmail && <p className="text-red-500 text-sm mt-1">{errors.usernameOrEmail.message}</p>}
             </div>

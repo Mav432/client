@@ -8,7 +8,7 @@ function Profile() {
   if (!user) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-900">
-        <div className="bg-gray-800 p-8 rounded shadow-md w-full max-w-md">
+        <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
           <h1 className="text-2xl font-bold mb-6 text-center text-white">
             Perfil
           </h1>
@@ -20,7 +20,7 @@ function Profile() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="bg-gray-800 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center text-white">
           Perfil
         </h1>

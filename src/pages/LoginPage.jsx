@@ -57,7 +57,7 @@ function LoginPage() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <ToastContainer />
-      <div className="bg-gray-800 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">
           Iniciar Sesión
         </h2>
@@ -73,7 +73,7 @@ function LoginPage() {
                   message: "El correo electrónico no es válido",
                 },
               })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -92,7 +92,7 @@ function LoginPage() {
                   message: "La contraseña debe tener al menos 8 caracteres",
                 },
               })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
             />
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
@@ -110,7 +110,7 @@ function LoginPage() {
         <div className="mt-4 text-center">
           <Link
             to="/password-recovery"
-            className="text-blue-500 hover:underline"
+            className="text-gray-500 hover:underline"
           >
             ¿Olvidaste tu contraseña?
           </Link>
