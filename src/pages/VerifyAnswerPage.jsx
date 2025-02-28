@@ -47,7 +47,7 @@ const VerifyAnswerPage = () => {
               {...register("securityAnswer", { required: "La respuesta de seguridad es obligatoria" })}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               placeholder="Security Answer"
-              onClick={(e) => {
+              onInput={(e) => {
                 e.target.value = e.target.value
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '')
