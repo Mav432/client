@@ -35,9 +35,9 @@ const VerifyAnswerPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-[#3f3f3f]">
       <ToastContainer />
-      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-[#121212a5] p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">{question}</h2>
         <form onSubmit={handleSubmit(verifyAnswer)}>
           <div className="mb-4">
@@ -45,12 +45,18 @@ const VerifyAnswerPage = () => {
             <input
               type="text"
               {...register("securityAnswer", { required: "La respuesta de seguridad es obligatoria" })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               placeholder="Security Answer"
+              onClick={(e) => {
+                e.target.value = e.target.value
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toUpperCase();
+              }}
             />
             {errors.securityAnswer && <p className="text-red-500 text-sm mt-1">{errors.securityAnswer.message}</p>}
           </div>
-          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Verificar respuesta</button>
+          <button type="submit" className="w-full bg-[#313134] text-white py-2 rounded-md hover:bg-gray-500 transition duration-200">Verificar respuesta</button>
         </form>
       </div>
     </div>

@@ -42,9 +42,9 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-[#3f3f3f]">
       <ToastContainer />
-      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-[#121212a5] p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">Restablecer Contraseña</h2>
         <form onSubmit={handleSubmit(resetPassword)}>
           <div className="mb-4">
@@ -52,7 +52,7 @@ const ResetPasswordPage = () => {
             <input
               type="password"
               {...register("newPassword", { required: "La nueva contraseña es obligatoria", onChange: handlePasswordChange })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               placeholder="Nueva Contraseña"
             />
             {errors.newPassword && <p className="text-red-500 text-sm mt-1">{errors.newPassword.message}</p>}
@@ -67,12 +67,12 @@ const ResetPasswordPage = () => {
             <input
               type="password"
               {...register("confirmPassword", { required: "Confirmar la contraseña es obligatorio" })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               placeholder="Confirmar Contraseña"
             />
             {errors.confirmPassword && <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>}
           </div>
-          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Restablecer Contraseña</button>
+          <button type="submit" className="w-full bg-[#313134] text-white py-2 rounded-md hover:bg-gray-500 transition duration-200">Restablecer Contraseña</button>
         </form>
       </div>
     </div>

@@ -55,9 +55,9 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-[#3f3f3f]">
       <ToastContainer />
-      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-[#121212a5] p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">
           Iniciar Sesión
         </h2>
@@ -73,7 +73,7 @@ function LoginPage() {
                   message: "El correo electrónico no es válido",
                 },
               })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -92,7 +92,7 @@ function LoginPage() {
                   message: "La contraseña debe tener al menos 8 caracteres",
                 },
               })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-[#8e8d8d68] text-white"
             />
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
@@ -102,7 +102,7 @@ function LoginPage() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+            className="w-full bg-[#313134] text-white py-2 rounded-md hover:bg-[#121212] transition duration-200"
           >
             Iniciar Sesión
           </button>

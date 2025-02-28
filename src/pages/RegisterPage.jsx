@@ -70,10 +70,10 @@ function RegisterPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-[#3f3f3f]">
       <ToastContainer />
-      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-white">Registro</h2>
+      <div className="bg-[#121212a5] p-8 rounded shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center text-white">Registrate</h2>
         <form onSubmit={handleSubmit(registerUser)}>
           <div className="mb-4">
             <label className="block text-gray-300">Nombre de Usuario</label>
@@ -86,7 +86,7 @@ function RegisterPage() {
                   message: "El nombre de usuario debe tener al menos 4 caracteres y solo letras"
                 }
               })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               placeholder="Nombre de Usuario"
             />
             {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>}
@@ -102,7 +102,7 @@ function RegisterPage() {
                   message: "El correo electrónico no es válido"
                 }
                })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               placeholder="Correo Electrónico"
             />
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
@@ -118,7 +118,7 @@ function RegisterPage() {
                   message: "El teléfono debe tener 10 dígitos"
                 }
               })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               placeholder="Teléfono"
             />
             {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
@@ -132,7 +132,7 @@ function RegisterPage() {
                   required: "La contraseña es obligatoria",
                   validate: validatePassword
                 })}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
                 placeholder="Contraseña"
                 onChange={handlePasswordChange} // validar contrasena
               />
@@ -158,7 +158,7 @@ function RegisterPage() {
                   required: "Confirmar la contraseña es obligatorio",
                   validate: value => value === watch('password') || "Las contraseñas no coinciden"
                 })}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
                 placeholder="Confirmar Contraseña"
               />
               <button
@@ -175,7 +175,7 @@ function RegisterPage() {
             <label className="block text-gray-300">Pregunta de Seguridad</label>
             <select
               {...register("securityQuestionId", { required: "La pregunta de seguridad es obligatoria" })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
             >
               <option value="">Seleccione una pregunta</option>
               {Array.isArray(questions) && questions.map((question) => (
@@ -191,7 +191,7 @@ function RegisterPage() {
             <input
               type="text"
               {...register("securityAnswer", { required: "La respuesta de seguridad es obligatoria" })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               placeholder="Respuesta de Seguridad"
               onInput={(e) => {
                 e.target.value = e.target.value 
@@ -202,7 +202,7 @@ function RegisterPage() {
             />
             {errors.securityAnswer && <p className="text-red-500 text-sm mt-1">{errors.securityAnswer.message}</p>}
           </div>
-          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Registrar</button>
+          <button type="submit" className="w-full bg-[#313134] text-white py-2 rounded-md hover:bg-gray-500 transition duration-200">Registrar</button>
         </form>
       </div>
     </div>

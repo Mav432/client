@@ -33,9 +33,9 @@ const PasswordRecoveryPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-[#3f3f3f]">
       <ToastContainer />
-      <div className="bg-red-500 p-8 rounded shadow-md w-full max-w-md">
+      <div className="bg-[#121212a5] p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">Recuperación de contraseña</h2>
         {!options ? (
           <form onSubmit={handleSubmit(verifyUser)}>
@@ -44,19 +44,19 @@ const PasswordRecoveryPage = () => {
               <input
                 type="text"
                 {...register("usernameOrEmail", { required: "Se requiere nombre de usuario o correo electrónico" })}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-700 text-white"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-[#8e8d8d68] text-white"
               />
               {errors.usernameOrEmail && <p className="text-red-500 text-sm mt-1">{errors.usernameOrEmail.message}</p>}
             </div>
-            <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Verificar usuario</button>
+            <button type="submit" className="w-full bg-[#313134] text-white py-2 rounded-md hover:bg-gray-500 transition duration-200">Verificar usuario</button>
           </form>
         ) : (
           <div>
             <h2 className="text-xl font-bold mb-4 text-center text-white">Opciones de recuperación</h2>
-            <button onClick={() => handleOptionClick('email')} className="w-full bg-blue-600 text-white py-2 rounded-md my-2 hover:bg-blue-700 transition duration-200">
+            <button onClick={() => handleOptionClick('email')} className="w-full bg-[#313134] text-white py-2 rounded-md my-2 hover:bg-gray-500 transition duration-200">
             Recuperar por correo electrónico
             </button>
-            <button onClick={() => handleOptionClick('security-question')} className="w-full bg-blue-600 text-white py-2 rounded-md my-2 hover:bg-blue-700 transition duration-200">
+            <button onClick={() => handleOptionClick('security-question')} className="w-full bg-[#313134] text-white py-2 rounded-md my-2 hover:bg-blue-700 transition duration-200">
             Recuperación mediante pregunta de seguridad
             </button>
           </div>
